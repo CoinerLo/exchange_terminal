@@ -1,0 +1,40 @@
+.user-section {
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-section-title {
+  margin: 5px 0 10px 0;
+  font-size: 30px;
+}
+
+.user-section-avatar {
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: dimgrey;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+}
+
+.user-section-avatar:hover {
+  background-color: rgba(105, 105, 105, 0.5);
+  cursor: pointer;
+}
+
+.user-section-name {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.user-section-contact {
+  margin-top: 10px;
+}

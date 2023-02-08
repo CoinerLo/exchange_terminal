@@ -1,0 +1,18 @@
+.ticker-modal-window-item {
+  list-style-type: none;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ticker-modal-window-item:hover {
+  transform: scale(1.3);
+}
+
+.ticker-modal-window-item + .ticker-modal-window-item {
+  margin-top: 10px;
+}
+
+.active-item {
+  color: green;
+}

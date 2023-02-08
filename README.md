@@ -15,3 +15,7 @@
 ## Линтинг
 
 `npm run lint`
+
+## Тесты
+
+`npm run test`

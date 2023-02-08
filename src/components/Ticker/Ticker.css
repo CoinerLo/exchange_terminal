@@ -1,0 +1,70 @@
+.ticker {
+  position: relative;
+  width: 30%;
+  height: 60%;
+  margin: 18px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.ticker-off {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  padding-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: none;
+}
+
+.ticker-off:hover {
+  border: none;
+}
+
+.ticker-title {
+  margin: 2px 0 10px 0;
+  padding: 0;
+  font-size: 26px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0;
+}
+
+.ticker-control {
+  display: flex;
+}
+
+.ticker-section {
+  width: 50%;
+}
+
+.ticker-left-section {
+  padding-right: 15px;
+  border-right: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.ticker-right-section {
+  padding-left: 15px;
+}
+
+.ticker-control-button {
+  width: 100px;
+  font-size: 22px;
+  text-transform: uppercase;
+}
+
+.ticker-section-price {
+  font-size: 22px;
+}
+
+.ticker-volume {
+  text-align: center;
+  font-size: 26px;
+}
