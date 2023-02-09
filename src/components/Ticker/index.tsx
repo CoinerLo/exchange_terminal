@@ -22,19 +22,21 @@ export const Ticker: FC<TickerProps> = ({
 
   const addOrder = (side: OrderSide) =>
     useCallback(() => {
-      if (Number(currentVolume)) {
+      const amount = Number(currentVolume)
+      if (amount) {
         const price = side === OrderSide.buy ? ask : bid
         const newOrderData = {
           side,
           price,
           instrument: name,
-          amount: currentVolume,
+          amount,
         }
         const newOrder = new Order(newOrderData)
 
         console.log('Отправляем на сервер новую заявку: ', newOrder)
 
         setOrdersList(prev => [...prev, newOrder])
+        setCurrentVolume('0')
       }
     }, [currentVolume])
 

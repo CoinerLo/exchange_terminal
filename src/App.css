@@ -2,7 +2,6 @@
   position: relative;
   width: 100%;
   height: 100vh;
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2.75rem 2rem;
   text-align: center;
@@ -14,4 +13,12 @@
 
 .bg-green {
   background-color: rgba(0, 220, 0, 0.5);
+}
+
+.txt-red {
+  color: red;
+}
+
+.txt-green {
+  color: green;
 }

@@ -9,7 +9,7 @@ export class Order {
   public status: OrederStatus
   public side: OrderSide
   public price: string
-  public amount: string
+  public amount: number
   public instrument: Instrument
 
   constructor({ side, price, amount, instrument }: NewOrderDataType) {

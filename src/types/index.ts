@@ -11,5 +11,5 @@ export interface NewOrderDataType {
   instrument: Instrument
   side: OrderSide
   price: string
-  amount: string
+  amount: number
 }

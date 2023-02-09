@@ -5,7 +5,7 @@ import { Order } from './Order'
 let newOrder: Order
 
 const orderMockData: NewOrderDataType = {
-  amount: '10000',
+  amount: 10000,
   price: '71.0150',
   side: OrderSide.buy,
   instrument: Instrument.eur_rub,
