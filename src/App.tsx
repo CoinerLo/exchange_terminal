@@ -9,6 +9,8 @@ import { InstrumentType } from './types'
 import { OrdersListContext } from './context/OrdersList'
 import type { Order } from './models/Order'
 import { BrowserRouter } from 'react-router-dom'
+import { WSTransport } from './services/WSTransport'
+import { ConnectContext } from './context/Connect'
 import './App.css'
 
 function App() {
@@ -16,22 +18,29 @@ function App() {
     []
   )
   const [ordersList, setOrdersList] = useState<[] | Order[]>([])
+  const [wsConnect, setWsConnect] = useState<null | WSTransport>(
+    new WSTransport()
+  )
+
+  wsConnect?.connect() // По понятным причинам будет ошибка подключения в консоли
 
   return (
     <BrowserRouter>
-      <OrdersListContext.Provider value={{ ordersList, setOrdersList }}>
-        <InstrumentListContext.Provider
-          value={{ instrumentList, setInstrumentList }}>
-          <Header />
-          <Routes>
-            <Route path={AppRoute.index} element={<Home />} />
-            <Route
-              path={AppRoute.listRequisitions}
-              element={<ListRequisitions />}
-            />
-          </Routes>
-        </InstrumentListContext.Provider>
-      </OrdersListContext.Provider>
+      <ConnectContext.Provider value={{ wsConnect, setWsConnect }}>
+        <OrdersListContext.Provider value={{ ordersList, setOrdersList }}>
+          <InstrumentListContext.Provider
+            value={{ instrumentList, setInstrumentList }}>
+            <Header />
+            <Routes>
+              <Route path={AppRoute.index} element={<Home />} />
+              <Route
+                path={AppRoute.listRequisitions}
+                element={<ListRequisitions />}
+              />
+            </Routes>
+          </InstrumentListContext.Provider>
+        </OrdersListContext.Provider>
+      </ConnectContext.Provider>
     </BrowserRouter>
   )
 }

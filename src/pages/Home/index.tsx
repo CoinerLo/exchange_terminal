@@ -4,17 +4,20 @@ import { getInstrumentDataById } from '../../utils'
 import { Ticker } from '../../components/Ticker'
 import { InstrumentListContext } from '../../context/InstrumentList'
 import { UserSection } from '../../components/UserSection'
+import { ConnectContext } from '../../context/Connect'
 import './Home.css'
 
 export const Home = () => {
   const { instrumentList, setInstrumentList } = useContext(
     InstrumentListContext
   )
+  const { wsConnect } = useContext(ConnectContext)
   const [isOpenTickerModalWindow, setIsOpenTickerModalWindow] = useState(false)
 
   const addTicker = useCallback((instrumentId: number) => {
     const instrument = getInstrumentDataById(instrumentId)
     if (instrument) {
+      // wsConnect?.subscribeMarketData(instrument.name) // Отправляем запрос на подписку серверу
       setInstrumentList(prev => {
         const filteredPrev = prev.find(i => i.id === instrumentId)
         if (!filteredPrev) {
@@ -26,6 +29,7 @@ export const Home = () => {
   }, [])
 
   const deleteTicker = useCallback((id: number) => {
+    // wsConnect?.unsubscribeMarketData('some-subscription-id') // Отправляем запрос на прекращение подписки серверу
     setInstrumentList(prev => prev.filter(i => i.id !== id))
   }, [])
 
@@ -49,6 +53,7 @@ export const Home = () => {
                 instrument={instrument}
                 deleteTicker={deleteTicker}
                 setIsOpenTickerModalWindow={setIsOpenTickerModalWindow}
+                wsConnect={wsConnect}
               />
             ))}
           </div>

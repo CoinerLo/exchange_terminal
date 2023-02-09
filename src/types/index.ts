@@ -1,4 +1,10 @@
-import { Instrument, OrderSide } from '../utils/Enums'
+import {
+  ClientMessageType,
+  Instrument,
+  OrderSide,
+  OrederStatus,
+  ServerMessageType,
+} from '../utils/Enums'
 
 export interface InstrumentType {
   id: number
@@ -12,4 +18,36 @@ export interface NewOrderDataType {
   side: OrderSide
   price: string
   amount: number
+}
+
+export interface UnsubscribeData {
+  subscriptionId: string
+}
+
+export interface SubscribeData {
+  instrument: Instrument
+}
+
+export interface IClientMessage {
+  messageType: ClientMessageType
+  message: NewOrderDataType | UnsubscribeData | SubscribeData
+}
+
+export interface Report {
+  orderId: string
+  orderStatus: OrederStatus
+}
+
+export interface MarketDataUpdate {
+  subscriptionId: string
+  instrument: InstrumentType
+}
+
+export interface ErrorServerMessage {
+  reason: string
+}
+
+export interface IServerMessage {
+  messageType: ServerMessageType
+  message: ErrorServerMessage | Report | MarketDataUpdate
 }

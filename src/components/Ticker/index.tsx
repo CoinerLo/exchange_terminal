@@ -3,18 +3,21 @@ import { InstrumentType } from '../../types'
 import { OrdersListContext } from '../../context/OrdersList'
 import { OrderSide } from '../../utils/Enums'
 import { Order } from '../../models/Order'
+import { WSTransport } from '../../services/WSTransport'
 import './Ticker.css'
 
 interface TickerProps {
   instrument: InstrumentType
   deleteTicker: (id: number) => void
   setIsOpenTickerModalWindow: React.Dispatch<React.SetStateAction<boolean>>
+  wsConnect: WSTransport | null
 }
 
 export const Ticker: FC<TickerProps> = ({
   instrument,
   deleteTicker,
   setIsOpenTickerModalWindow,
+  wsConnect,
 }) => {
   const { setOrdersList } = useContext(OrdersListContext)
   const [currentVolume, setCurrentVolume] = useState('0')
@@ -23,7 +26,7 @@ export const Ticker: FC<TickerProps> = ({
   const addOrder = (side: OrderSide) =>
     useCallback(() => {
       const amount = Number(currentVolume)
-      if (amount) {
+      if (amount && wsConnect) {
         const price = side === OrderSide.buy ? ask : bid
         const newOrderData = {
           side,
@@ -33,7 +36,7 @@ export const Ticker: FC<TickerProps> = ({
         }
         const newOrder = new Order(newOrderData)
 
-        console.log('Отправляем на сервер новую заявку: ', newOrder)
+        // wsConnect.placeOrder(newOrder) // Отправляем запрос на регистрацию нового ордера серверу
 
         setOrdersList(prev => [...prev, newOrder])
         setCurrentVolume('0')

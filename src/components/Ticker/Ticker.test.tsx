@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { Ticker } from './'
 import { Instrument } from '../../utils/Enums'
+import { WSTransport } from '../../services/WSTransport'
 
 const tickerInstrument = Instrument.eur_rub
 
@@ -15,6 +16,7 @@ const mockProps = {
   instrument: mockInstrument,
   deleteTicker: () => undefined,
   setIsOpenTickerModalWindow: () => undefined,
+  wsConnect: new WSTransport(),
 }
 
 describe('Ticker test', () => {
@@ -24,6 +26,7 @@ describe('Ticker test', () => {
         deleteTicker={mockProps.deleteTicker}
         instrument={mockProps.instrument}
         setIsOpenTickerModalWindow={mockProps.setIsOpenTickerModalWindow}
+        wsConnect={mockProps.wsConnect}
       />
     )
     expect(screen.getByText(tickerInstrument)).toBeDefined()
